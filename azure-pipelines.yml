@@ -93,7 +93,7 @@ stages:
   displayName: 'Deploy to the test environment'
   dependsOn: Dev
   jobs:
-  - deployment: DeployT
+  - deployment: Deploy
     pool:
       vmImage: 'ubuntu-16.04'
     environment: test
@@ -112,7 +112,7 @@ stages:
               appName: '$(WebAppNameTest)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
   - job: RunUITests
-    dependsOn: DeployT
+    dependsOn: Deploy
     displayName: 'Run UI tests'
     pool:
       vmImage: 'windows-2019'
